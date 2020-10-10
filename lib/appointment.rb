@@ -1,6 +1,10 @@
+require 'pry'
+require_relative "./patient.rb"
+
+
 class Appointment
 
-    attr_reader :date, :patient, :doctor
+    attr_accessor :date, :patient, :doctor
 
     @@all = [] 
 
@@ -14,5 +18,6 @@ class Appointment
     def self.all
         @@all
     end
+
 
 end
