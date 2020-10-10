@@ -40,22 +40,36 @@ require_relative "./appointment.rb"
 
 class Patient
 
-    attr_accessor :name
+    attr_accessor :patient
 
     @@all = []
 
-    def initialize(name)
-        @name = name
+    def initialize(patient)
+        @patient = patient
         @@all << self
     end
 
     def new_appointment(doctor, date)
         appointment = Appointment.new(date, self, doctor)
-        appointment
+    end
+
+    def appointments
+        Appointment.all.select{|appointment| appointment.patient == self
+            #binding.pry
+        }
     end
 
     def self.all
         @@all
     end
+
+    def doctors
+        Appointment.all.collect {|a| 
+            if a.patient == self
+                a.doctor
+            end
+        }
+    end    
+
 
 end
